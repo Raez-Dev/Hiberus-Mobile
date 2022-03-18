@@ -1,28 +1,23 @@
-import React from 'react'
-import PropTypes from 'prop-types';
+import React from 'react';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import Main from './Main/Main';
 import GlobalStyle from './globalStyles';
 import { Outlet } from 'react-router-dom';
 
-const Layout = ({ path }) => {
+const Layout = () => {
     return (
         <>
             <GlobalStyle />
             <div className='layout'>
-                <Header/>
-                <Main path={path}>
+                <Header />
+                <Main>
                     <Outlet />
                 </Main>
                 <Footer />
             </div>
         </>
     )
-}
-
-Layout.prototype = {
-    path: PropTypes.string
 }
 
 export default Layout;
