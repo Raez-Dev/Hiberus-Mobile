@@ -1,14 +1,14 @@
 //  Dependencies
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import { LSContext } from "../Context/LSContext";
 
 //  RoutesList
 import RoutesList from './RoutesList';
 
-
 const Index = () => {
 
-    const [isAuth] = useState(false);
+    const { isAuth } = useContext(LSContext);
 
     return (
 

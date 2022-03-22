@@ -1,8 +1,11 @@
+import LSContext from '../Context/LSContext';
 import Routes from '../Routes/Index';
 
 const App = () => {
   return (
-    <Routes />
+    <LSContext>
+      <Routes />
+    </LSContext>
   );
 }
 
