@@ -4,11 +4,12 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 //  Services
-import authService from '../../../Services/authService';
+import {useAuthService} from '../../../Services/authService';
 
 const SignUp = () => {
     const [UserForm, setUserForm] = useState({ email: '', password: '', name: '', surname: '' });
     const [ReadyToGo, setReadyToGo] = useState(false);
+    const { authService } = useAuthService();
     const Navigate = useNavigate();
 
     useEffect(() => {
@@ -35,7 +36,7 @@ const SignUp = () => {
         else {
             Swal.fire({
                 icon: 'error',
-                title: `${response.error}`,
+                title: `${response.error === undefined ? 'Error':response.error}`,
                 html: `${response.message}`,
                 showConfirmButton: false,
                 timer: 1500

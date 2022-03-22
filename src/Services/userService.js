@@ -1,6 +1,6 @@
 //  Dependencies
 import { useContext } from 'react';
-import { instance as interceptor } from './interceptor'
+import { useInterceptor } from './interceptor'
 
 //  Context
 import { LSContext } from '../Context/LSContext';
@@ -13,9 +13,10 @@ const urlGetUser = `${baseUrl}users/`;
 const urlPutUser = `${baseUrl}users/`;
 const urlDeleteUser = `${baseUrl}users/`;
 
-export const useUseService = () => {
+export const useUserService = () => {
 
     const { localStorage } = useContext(LSContext);
+    const { interceptor } = useInterceptor();
 
     const getMe = async(token = '') => {
         try {

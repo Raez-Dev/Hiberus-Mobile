@@ -7,15 +7,17 @@ import Swal from 'sweetalert2'
 import { LSContext } from '../../../Context/LSContext';
 
 //  Services
-import authService from '../../../Services/authService';
-import { useUseService } from '../../../Services/userService';
+import {useAuthService} from '../../../Services/authService';
+import { useUserService } from '../../../Services/userService';
 
 const Login = () => {
 
   const [UserForm, setUserForm] = useState({ email: '', password: '' });
   const [ReadyToGo, setReadyToGo] = useState(false);
   const { saveLS,saveUser } = useContext(LSContext);
-  const { userService } = useUseService();
+  const { userService } = useUserService();
+  const { authService } = useAuthService();
+  
   const Navigate = useNavigate();
 
   useEffect(() => {
@@ -47,7 +49,7 @@ const Login = () => {
       } else {
         Swal.fire({
           icon: 'error',
-          title: `${response.error}`,
+          title: `${response.error === undefined ? 'Error':response.error}`,
           html: `${response.message}`,
           showConfirmButton: false,
           timer: 1500
@@ -57,7 +59,7 @@ const Login = () => {
     else {
       Swal.fire({
         icon: 'error',
-        title: `${response.error}`,
+        title: `${response.error === undefined ? 'Error':response.error}`,
         html: `${response.message}`,
         showConfirmButton: false,
         timer: 1500

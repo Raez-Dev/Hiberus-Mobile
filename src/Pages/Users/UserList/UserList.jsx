@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useUseService } from '../../../Services/userService';
+import { useUserService } from '../../../Services/userService';
 import Swal from 'sweetalert2';
 import Modal from '../../../Components/Modal/Modal';
 import EditUser from "../EditUser/EditUser";
@@ -16,7 +16,7 @@ const UserList = () => {
     })
 
     const [open, setOpen] = useState({ isOpen: false, type: null });
-    const { userService } = useUseService();
+    const { userService } = useUserService();
 
     useEffect(() => {
         getUsers();
@@ -47,7 +47,7 @@ const UserList = () => {
         } else {
             Swal.fire({
                 icon: 'error',
-                title: `${response.error}`,
+                title: `${response.error === undefined ? 'Error':response.error}`,
                 html: `${response.message}`,
                 showConfirmButton: false,
                 timer: 1500
@@ -63,7 +63,7 @@ const UserList = () => {
         } else {
             Swal.fire({
                 icon: 'error',
-                title: `${response.error}`,
+                title: `${response.error === undefined ? 'Error':response.error}`,
                 html: `${response.message}`,
                 showConfirmButton: false,
                 timer: 1500
@@ -110,7 +110,7 @@ const UserList = () => {
         if (response.statusCode !== 200) {
             Swal.fire({
                 icon: 'error',
-                title: `${response.error}`,
+                title: `${response.error === undefined ? 'Error':response.error}`,
                 html: `${response.message}`,
                 showConfirmButton: false,
                 timer: 1500
